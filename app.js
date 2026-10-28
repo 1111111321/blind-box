@@ -334,11 +334,16 @@
           card.className = 'card ' + (found ? 'card--found' : 'card--locked');
           if (found) card.dataset.rarity = item.rarity;
 
+          /* 卡片上只留图形；名称放进 title 与 aria-label，鼠标悬停能看，读屏也能读 */
+          const label = found
+            ? item.name + '，' + meta.label + (count > 1 ? '，已有 ' + count + ' 个' : '')
+            : '尚未抽到';
+          card.setAttribute('aria-label', label);
+          card.title = label;
+
           card.innerHTML =
-            (found ? glyph(item.icon, 'card__glyph') : '<span class="card__glyph card__glyph--none" aria-hidden="true">—</span>') +
-            '<span class="card__name">' + (found ? item.name : '未解锁') + '</span>' +
-            '<span class="card__meta">' + (found ? meta.label : '—') + '</span>' +
-            (count > 1 ? '<span class="card__count">已有 ' + count + ' 个</span>' : '');
+            (found ? glyph(item.icon, 'card__glyph') : glyph(item.icon, 'card__glyph card__glyph--ghost')) +
+            (count > 1 ? '<span class="card__count">×' + count + '</span>' : '');
 
           grid.appendChild(card);
         });

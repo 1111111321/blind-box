@@ -412,15 +412,13 @@ button { font: inherit; color: inherit; }
   margin-bottom: 28px;
 }
 .card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding: 18px 10px 16px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 22px 10px;
   border: 1px solid var(--line);
   border-radius: var(--r);
   background: var(--surface);
-  text-align: center;
 }
 .card--locked {
   background: transparent;
@@ -431,25 +429,18 @@ button { font: inherit; color: inherit; }
   width: 34px;
   height: 34px;
   color: var(--ink);
-  margin-bottom: 4px;
 }
 .card--locked .card__glyph { color: var(--line-2); }
-.card__glyph--none {
-  display: grid;
-  place-items: center;
-  font-size: 1.1rem;
-  line-height: 1;
-}
-.card__name { font-size: .92rem; font-weight: 600; }
-.card--locked .card__name { color: var(--muted); font-weight: 400; }
-.card__meta {
-  font-size: .74rem;
-  letter-spacing: .06em;
-  color: var(--muted);
+.card__glyph--ghost {
+  color: var(--line-2);
+  opacity: .9;
 }
 .card__count {
-  font-size: .74rem;
-  color: var(--accent);
+  position: absolute;
+  top: 7px;
+  right: 9px;
+  font-size: .72rem;
+  color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
 
