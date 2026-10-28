@@ -164,9 +164,6 @@
     const overlay = document.getElementById('overlay');
     const dialog = document.getElementById('reveal');
     const dGlyph = document.getElementById('revealGlyph');
-    const dRarity = document.getElementById('revealRarity');
-    const dName = document.getElementById('revealName');
-    const dMeta = document.getElementById('revealMeta');
     const closeBtn = document.getElementById('revealClose');
 
     const statDraws = document.getElementById('statDraws');
@@ -235,13 +232,8 @@
       const meta = RARITY[result.rarity];
 
       dGlyph.innerHTML = glyph(result.item.icon, 'dialog__glyph');
-      dRarity.textContent = meta.label;
-      dName.textContent = result.item.name;
-
-      let text = '第 ' + result.draws + ' 抽 · ' +
-        (result.isNew ? '新藏品' : '重复，已有 ' + result.count + ' 个');
-      if (result.forced) text += ' · 保底触发';
-      dMeta.innerHTML = text.replace('新藏品', '<b>新藏品</b>');
+      /* 浮层上不写文字，信息放进 aria-label，读屏仍然知道抽到了什么 */
+      dialog.setAttribute('aria-label', '开出' + result.item.name + '，' + meta.label);
 
       overlay.hidden = false;
       document.body.style.overflow = 'hidden';

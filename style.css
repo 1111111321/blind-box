@@ -356,21 +356,11 @@ button { font: inherit; color: inherit; }
 
 .dialog__glyph {
   display: block;
-  width: 60px;
-  height: 60px;
-  margin: 6px auto 12px;
+  width: 64px;
+  height: 64px;
+  margin: 10px auto 24px;
   color: var(--ink);
 }
-.dialog__rarity {
-  margin: 0 0 2px;
-  font-size: .74rem;
-  font-weight: 600;
-  letter-spacing: .14em;
-  color: var(--accent);
-}
-.dialog__name { margin: 0 0 4px; font-size: 1.35rem; }
-.dialog__meta { margin: 0 0 20px; font-size: .85rem; color: var(--muted); }
-.dialog__meta b { color: var(--accent); font-weight: 600; }
 .dialog__actions { display: flex; gap: 10px; }
 .dialog__actions .btn { flex: 1 1 0; }
 
