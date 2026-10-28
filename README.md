@@ -2,7 +2,7 @@
 
 一个纯前端的小盲盒站：点开盒子，收下一件小东西。
 
-手写的 HTML / CSS / JavaScript，没有框架、没有构建、没有服务器、没有账号。收藏进度存在浏览器本地的 `localStorage` 里。
+纯静态的 HTML / CSS / JavaScript，没有服务器，也没有账号。收藏进度存在浏览器本地的 `localStorage` 里。
 
 ## 页面
 
