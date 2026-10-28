@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="星屿盲盒：点开盒子，抽走今天的十二分之一。纯前端，收藏进度只存在你自己的浏览器里。">
-  <meta name="theme-color" content="#fdf7f2">
+  <meta name="description" content="星屿盲盒：一箱十二个盒子，五种稀有度，一个隐藏款。点开盒子看看今天抽到哪一件。">
+  <meta name="theme-color" content="#fbfaf7">
   <title>星屿盲盒 · 抽盒</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
@@ -16,16 +16,10 @@
   <header class="site-head">
     <div class="wrap head-inner">
       <a class="brand" href="index.html">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <defs>
-            <linearGradient id="brandBox" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#ff6f9c"></stop>
-              <stop offset="1" stop-color="#8a6bff"></stop>
-            </linearGradient>
-          </defs>
-          <rect x="3" y="7" width="18" height="14" rx="4.5" fill="url(#brandBox)"></rect>
-          <rect x="3" y="11" width="18" height="3" fill="#fff" opacity=".8"></rect>
-          <rect x="10.5" y="7" width="3" height="14" fill="#fff" opacity=".8"></rect>
+        <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="4" y="8" width="16" height="12" rx="2.5"></rect>
+          <path d="M4 12.5h16M12 8v12"></path>
+          <path d="M12 8c-1.2-2-3-3.2-4.2-2.2C6.6 6.7 8 8 12 8zM12 8c1.2-2 3-3.2 4.2-2.2C17.4 6.7 16 8 12 8z"></path>
         </svg>
         <span>星屿盲盒</span>
       </a>
@@ -34,7 +28,8 @@
         <ul>
           <li><a href="index.html" aria-current="page">抽盒</a></li>
           <li><a href="collection.html">收藏册</a></li>
-          <li><a href="odds.html">概率与玩法</a></li>
+          <li><a href="odds.html">概率</a></li>
+          <li><a href="about.html">关于</a></li>
         </ul>
       </nav>
     </div>
@@ -43,68 +38,59 @@
   <main id="main">
     <div class="wrap">
 
-      <section class="hero">
-        <h1>拆开<span>今日份</span>的小惊喜</h1>
-        <p>十二个盒子、五种稀有度、一个隐藏款。点一下盒子，看看今天星屿寄来了什么。</p>
-
-        <div class="stats">
-          <span class="stat">已抽 <b id="statDraws">0</b> 次</span>
-          <span class="stat">已集 <b id="statOwned">0/12</b></span>
-          <span class="stat">保底 <b id="statPity">还差 10 抽</b></span>
-        </div>
+      <section class="intro">
+        <p class="eyebrow">纯前端 · 课程项目</p>
+        <h1>点开一个盒子，收下一件小东西</h1>
+        <p class="lede">一箱十二个盒子，五种稀有度，一个隐藏款。开过的盒子在这一箱里不会再出现，收藏进度只存在你自己的浏览器里。</p>
+        <p class="stats">
+          <span>已抽 <b id="statDraws">0</b> 次</span>
+          <span>已集 <b id="statOwned">0/12</b></span>
+          <span>保底 <b id="statPity">还差 10 抽</b></span>
+        </p>
       </section>
 
       <section class="machine" aria-labelledby="machineTitle">
         <div class="machine-head">
-          <h2 id="machineTitle">星屿漫游 · 第一弹</h2>
-          <span class="tag">12 入</span>
-          <a class="link" href="odds.html">看看概率</a>
+          <h2 id="machineTitle">第一弹 · 星屿漫游</h2>
+          <span class="count">12 入</span>
+          <a class="quiet-link" href="odds.html">概率</a>
         </div>
 
         <div class="case" id="case"></div>
 
         <div class="machine-foot">
-          <button class="btn btn--ghost btn--sm" id="refillBtn" type="button" hidden>再装一箱</button>
-          <p>一箱 12 个，开过的不会重复出现；整箱开完可以「再装一箱」，收藏记录不受影响。</p>
+          <button class="btn btn--sm" id="refillBtn" type="button" hidden>再装一箱</button>
+          <p>一箱开完可以重新装一箱，收藏记录会继续累计。</p>
         </div>
 
-        <div class="recent" id="recent"></div>
+        <p class="recent" id="recent"></p>
       </section>
 
       <p class="sr-only" id="live" aria-live="polite"></p>
     </div>
   </main>
 
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>© 2026 星屿盲盒</span>
+      <span>仅供娱乐，进度只保存在本机</span>
+      <a href="about.html">关于本站</a>
+    </div>
+  </footer>
+
   <div class="overlay" id="overlay" hidden>
-    <div class="reveal" id="reveal" role="dialog" aria-modal="true" aria-labelledby="revealName">
-      <button class="reveal__close" id="revealClose" type="button" aria-label="关闭">×</button>
-
-      <div class="plinth">
-        <span class="plinth__emoji" id="revealEmoji">⭐</span>
-        <span class="plinth__spark" aria-hidden="true">
-          <i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i>
-          <i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i>
-        </span>
-      </div>
-
-      <p class="reveal__rarity" id="revealRarity">普通</p>
-      <h2 class="reveal__name" id="revealName">小星星</h2>
-      <p class="reveal__meta" id="revealMeta">第 1 抽</p>
-
-      <div class="reveal__actions">
-        <button class="btn btn--ghost" id="acceptBtn" type="button">收下</button>
+    <div class="dialog" id="reveal" role="dialog" aria-modal="true" aria-labelledby="revealName" aria-describedby="revealMeta">
+      <button class="dialog__close" id="revealClose" type="button" aria-label="关闭结果">×</button>
+      <div id="revealGlyph"></div>
+      <p class="dialog__rarity" id="revealRarity">普通</p>
+      <h2 class="dialog__name" id="revealName">小星星</h2>
+      <p class="dialog__meta" id="revealMeta">第 1 抽</p>
+      <div class="dialog__actions">
+        <button class="btn" id="acceptBtn" type="button">收下</button>
         <button class="btn btn--primary" id="againBtn" type="button">再抽一个</button>
       </div>
     </div>
   </div>
-
-  <footer class="site-foot">
-    <div class="wrap">
-      <span>© 2026 星屿盲盒 · 仅供娱乐</span>
-      <span>进度只保存在你的浏览器里</span>
-      <a href="odds.html">概率说明</a>
-    </div>
-  </footer>
 
   <script src="app.js"></script>
 </body>

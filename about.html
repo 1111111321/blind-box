@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="关于星屿盲盒：为什么做、怎么做、用了哪些技术，以及联系方式。">
+  <meta name="theme-color" content="#fbfaf7">
+  <title>关于 · 星屿盲盒</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="about">
+
+  <a class="skip" href="#main">跳到主要内容</a>
+
+  <header class="site-head">
+    <div class="wrap head-inner">
+      <a class="brand" href="index.html">
+        <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="4" y="8" width="16" height="12" rx="2.5"></rect>
+          <path d="M4 12.5h16M12 8v12"></path>
+          <path d="M12 8c-1.2-2-3-3.2-4.2-2.2C6.6 6.7 8 8 12 8zM12 8c1.2-2 3-3.2 4.2-2.2C17.4 6.7 16 8 12 8z"></path>
+        </svg>
+        <span>星屿盲盒</span>
+      </a>
+
+      <nav class="site-nav" aria-label="主导航">
+        <ul>
+          <li><a href="index.html">抽盒</a></li>
+          <li><a href="collection.html">收藏册</a></li>
+          <li><a href="odds.html">概率</a></li>
+          <li><a href="about.html" aria-current="page">关于</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+
+      <section class="page-head">
+        <p class="eyebrow">关于</p>
+        <h1>这个小站是怎么来的</h1>
+        <p class="lede">一个周末写出来的盲盒小站：手写 HTML、CSS 和 JavaScript，没有框架，也没有服务器。</p>
+      </section>
+
+      <div class="prose">
+
+        <h2>为什么是盲盒</h2>
+        <p>盲盒好玩的地方不在东西本身，而在拆开之前那几秒。想到可以把这点期待感做成网页，就有了这个站：一箱十二个格子，点开一个，得一件小东西。</p>
+
+        <h2>怎么做的</h2>
+        <ul>
+          <li>四个页面各自是独立的 HTML 文件，导航是真实的链接，不用脚本拼菜单。</li>
+          <li>所有样式集中在一个 <code>style.css</code> 里，颜色、间距、字号都先定义成变量。</li>
+          <li>藏品、概率、抽盒逻辑在 <code>app.js</code> 里；稀有度表既是抽盒依据，也是「概率」页表格的数据来源。</li>
+          <li>收藏进度存在浏览器本地的 <code>localStorage</code>，没有账号，也不会上传。</li>
+        </ul>
+
+        <h2>做了哪些取舍</h2>
+        <p>一开始想做得很热闹：渐变、发光、满屏彩纸。后来发现这些效果把内容盖住了，手机上还卡。现在只留一种强调色，动效只剩下开盒时的一下轻晃和结果浮层的一次淡入。</p>
+
+        <h2>无障碍</h2>
+        <ul>
+          <li>盒子是真正的 <code>&lt;button&gt;</code>，键盘可以开盒；结果会通过 <code>aria-live</code> 播报。</li>
+          <li>结果浮层可以用 <code>Esc</code> 关闭，关闭后焦点回到刚才那个盒子。</li>
+          <li>系统开启「减少动态效果」时，动画基本关闭；深色模式跟随系统。</li>
+        </ul>
+
+        <h2>关于我</h2>
+        <p>北京工业大学（BiUH）计算机科学专业在读。这个站是 Web 技术课程的课程项目，代码全部手写，没有使用框架或模板。</p>
+        <p>如果有想法或问题，写信到 <a href="mailto:15804013415@163.com">15804013415@163.com</a>。</p>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>© 2026 星屿盲盒</span>
+      <span>仅供娱乐，进度只保存在本机</span>
+      <a href="odds.html">概率说明</a>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
