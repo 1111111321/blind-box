@@ -155,10 +155,52 @@ button { font: inherit; color: inherit; }
 .site-nav a[aria-current="page"]:hover { background: transparent; }
 
 /* 4 · 首页 */
+html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: 24px; }
+
 .intro {
-  padding: clamp(32px, 6vw, 56px) 0 28px;
+  padding: clamp(32px, 6vw, 56px) 0 22px;
   max-width: 38rem;
 }
+
+/* 本页目录：几条锚点链接，点了直接跳到下面的小节 */
+.toc {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  margin: 0 0 26px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: .88rem;
+}
+.toc__label {
+  font-size: .74rem;
+  letter-spacing: .12em;
+  color: var(--muted);
+}
+.toc a {
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--line-2);
+}
+.toc a:hover { color: var(--accent); border-color: currentColor; text-decoration: none; }
+
+/* 目录跳过去的小节 */
+.section {
+  max-width: 38rem;
+  padding: 26px 0 6px;
+  border-top: 1px solid var(--line);
+}
+.section h2 { margin-bottom: 10px; font-size: 1.05rem; }
+.section p { color: var(--ink-2); }
+.section .rules { margin: 0 0 14px; }
+.section__more {
+  margin: 0;
+  font-size: .86rem;
+}
+.section__more a { color: var(--muted); border-bottom: 1px solid var(--line-2); }
+.section__more a:hover { color: var(--accent); border-color: currentColor; text-decoration: none; }
+.section__more .dot { margin: 0 .55em; color: var(--line-2); }
 .eyebrow {
   margin: 0 0 .9em;
   font-size: .78rem;
@@ -187,7 +229,7 @@ button { font: inherit; color: inherit; }
   border-radius: 14px;
   background: var(--surface);
   padding: 18px 18px 16px;
-  margin-bottom: 40px;
+  margin-bottom: 26px;
   box-shadow: var(--shadow);
 }
 .machine-head {
@@ -572,6 +614,7 @@ tbody tr:last-child td { border-bottom: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: .001ms !important;
     animation-iteration-count: 1 !important;

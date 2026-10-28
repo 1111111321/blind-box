@@ -49,7 +49,14 @@
         </p>
       </section>
 
-      <section class="machine" aria-labelledby="machineTitle">
+      <nav class="toc" id="toc" aria-label="本页目录">
+        <span class="toc__label">本页</span>
+        <a href="#machine">机台</a>
+        <a href="#how">怎么玩</a>
+        <a href="#about">关于</a>
+      </nav>
+
+      <section class="machine" id="machine" aria-labelledby="machineTitle">
         <div class="machine-head">
           <h2 id="machineTitle">第一弹</h2>
           <span class="count">12 入</span>
@@ -64,6 +71,27 @@
         </div>
 
         <p class="recent" id="recent"></p>
+      </section>
+
+      <section class="section" id="how" aria-labelledby="howTitle">
+        <h2 id="howTitle">怎么玩</h2>
+        <ul class="rules">
+          <li><b>一箱 12 个</b>：每个盒子只能开一次，开过的在这一箱里不会重复出现。</li>
+          <li><b>自动记账</b>：开出来的东西会记进收藏册，重复的会累计数量。</li>
+          <li><b>保底</b>：连续 10 抽没出史诗及以上，第 10 抽必定是史诗、传说或隐藏。</li>
+          <li><b>只存本机</b>：记录在浏览器的 localStorage 里，换设备或清数据会重新开始。</li>
+        </ul>
+        <p class="section__more">
+          <a href="odds.html">看完整的概率表</a><span class="dot">·</span><a href="#toc">返回目录</a>
+        </p>
+      </section>
+
+      <section class="section" id="about" aria-labelledby="aboutTitle">
+        <h2 id="aboutTitle">关于</h2>
+        <p>十二件藏品、五档稀有度。四个页面、一套样式、一个脚本文件，没有服务器，也没有账号。</p>
+        <p class="section__more">
+          <a href="about.html">关于这个站</a><span class="dot">·</span><a href="collection.html">我的收藏册</a><span class="dot">·</span><a href="#toc">返回目录</a>
+        </p>
       </section>
 
       <p class="sr-only" id="live" aria-live="polite"></p>
