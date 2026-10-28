@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="盲盒：一箱十二个盒子，五种稀有度，一个隐藏款。点开盒子看看今天抽到哪一件。">
+  <meta name="description" content="A blind box you can open in the browser: twelve boxes, five rarities, one secret piece.">
   <meta name="theme-color" content="#fbfaf7">
-  <title>盲盒 · 抽盒</title>
+  <title>Blind Box · Draw</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="draw">
 
-  <a class="skip" href="#main">跳到主要内容</a>
+  <a class="skip" href="#main">Skip to content</a>
 
   <header class="site-head">
     <div class="wrap head-inner">
@@ -21,15 +21,15 @@
           <path d="M4 12.5h16M12 8v12"></path>
           <path d="M12 8c-1.2-2-3-3.2-4.2-2.2C6.6 6.7 8 8 12 8zM12 8c1.2-2 3-3.2 4.2-2.2C17.4 6.7 16 8 12 8z"></path>
         </svg>
-        <span>盲盒</span>
+        <span>Blind Box</span>
       </a>
 
-      <nav class="site-nav" aria-label="主导航">
+      <nav class="site-nav" aria-label="Main navigation">
         <ul>
-          <li><a href="index.html" aria-current="page">抽盒</a></li>
-          <li><a href="collection.html">收藏册</a></li>
-          <li><a href="odds.html">概率</a></li>
-          <li><a href="about.html">关于</a></li>
+          <li><a href="index.html" aria-current="page">Draw</a></li>
+          <li><a href="collection.html">Collection</a></li>
+          <li><a href="odds.html">Odds</a></li>
+          <li><a href="about.html">About</a></li>
         </ul>
       </nav>
     </div>
@@ -39,58 +39,58 @@
     <div class="wrap">
 
       <section class="intro">
-        <p class="eyebrow">纯前端 · 课程项目</p>
-        <h1>点开一个盒子，收下一件小东西</h1>
-        <p class="lede">一箱十二个盒子，五种稀有度，一个隐藏款。开过的盒子在这一箱里不会再出现，收藏进度只存在你自己的浏览器里。</p>
+        <p class="eyebrow">Front-end only · Course project</p>
+        <h1>Open a box, take home something small</h1>
+        <p class="lede">Twelve boxes, five rarities, one secret. A box you open will not come back in the same case, and your progress stays in this browser.</p>
         <p class="stats">
-          <span>已抽 <b id="statDraws">0</b> 次</span>
-          <span>已集 <b id="statOwned">0/12</b></span>
-          <span>保底 <b id="statPity">还差 10 抽</b></span>
+          <span>Drawn <b id="statDraws">0</b></span>
+          <span>Collected <b id="statOwned">0/12</b></span>
+          <span>Guarantee <b id="statPity">10 draws left</b></span>
         </p>
       </section>
 
-      <nav class="toc" id="toc" aria-label="站内目录">
-        <span class="toc__label">目录</span>
-        <a href="collection.html">收藏册</a>
-        <a href="odds.html">概率与玩法</a>
-        <a href="about.html">关于</a>
+      <nav class="toc" id="toc" aria-label="Site contents">
+        <span class="toc__label">Contents</span>
+        <a href="collection.html">Collection</a>
+        <a href="odds.html">Odds &amp; rules</a>
+        <a href="about.html">About</a>
       </nav>
 
       <section class="machine" id="machine" aria-labelledby="machineTitle">
         <div class="machine-head">
-          <h2 id="machineTitle">第一弹</h2>
-          <span class="count">12 入</span>
-          <a class="quiet-link" href="odds.html">概率</a>
+          <h2 id="machineTitle">Series One</h2>
+          <span class="count">12 boxes</span>
+          <a class="quiet-link" href="odds.html">Odds</a>
         </div>
 
         <div class="case" id="case"></div>
 
         <div class="machine-foot">
-          <button class="btn btn--sm" id="refillBtn" type="button" hidden>再装一箱</button>
-          <p>一箱开完可以重新装一箱，收藏记录会继续累计。</p>
+          <button class="btn btn--sm" id="refillBtn" type="button" hidden>Refill the case</button>
+          <p>Once all twelve are open you can refill; your collection keeps counting.</p>
         </div>
 
         <p class="recent" id="recent"></p>
       </section>
 
       <section class="section" id="how" aria-labelledby="howTitle">
-        <h2 id="howTitle">怎么玩</h2>
+        <h2 id="howTitle">How it works</h2>
         <ul class="rules">
-          <li><b>一箱 12 个</b>：每个盒子只能开一次，开过的在这一箱里不会重复出现。</li>
-          <li><b>自动记账</b>：开出来的东西会记进收藏册，重复的会累计数量。</li>
-          <li><b>保底</b>：连续 10 抽没出史诗及以上，第 10 抽必定是史诗、传说或隐藏。</li>
-          <li><b>只存本机</b>：记录在浏览器的 localStorage 里，换设备或清数据会重新开始。</li>
+          <li><b>Twelve per case</b>: each box opens once, and never repeats inside the same case.</li>
+          <li><b>Kept for you</b>: everything you draw is added to the collection; duplicates are counted.</li>
+          <li><b>Guarantee</b>: ten draws without Epic or better, and the tenth is Epic, Legendary or Secret.</li>
+          <li><b>On this device</b>: records live in the browser's localStorage; a new device or cleared data starts over.</li>
         </ul>
         <p class="section__more">
-          <a href="odds.html">看完整的概率表</a><span class="dot">·</span><a href="#toc">返回目录</a>
+          <a href="odds.html">See the full odds</a><span class="dot">·</span><a href="#toc">Back to contents</a>
         </p>
       </section>
 
-      <section class="section" id="about" aria-labelledby="aboutTitle">
-        <h2 id="aboutTitle">关于</h2>
-        <p>十二件藏品、五档稀有度。四个页面、一套样式、一个脚本文件，没有服务器，也没有账号。</p>
+      <section class="section" id="about-site" aria-labelledby="aboutTitle">
+        <h2 id="aboutTitle">About</h2>
+        <p>Twelve pieces, five rarities. Four pages, one stylesheet, one script file — no server, no account.</p>
         <p class="section__more">
-          <a href="about.html">关于这个站</a><span class="dot">·</span><a href="collection.html">我的收藏册</a><span class="dot">·</span><a href="#toc">返回目录</a>
+          <a href="about.html">About this site</a><span class="dot">·</span><a href="collection.html">My collection</a><span class="dot">·</span><a href="#toc">Back to contents</a>
         </p>
       </section>
 
@@ -100,19 +100,19 @@
 
   <footer class="site-foot">
     <div class="wrap">
-      <span>© 2026 盲盒</span>
-      <span>仅供娱乐，进度只保存在本机</span>
-      <a href="about.html">关于本站</a>
+      <span>© 2026 Blind Box</span>
+      <span>For fun only — progress stays on this device</span>
+      <a href="about.html">About this site</a>
     </div>
   </footer>
 
   <div class="overlay" id="overlay" hidden>
-    <div class="dialog" id="reveal" role="dialog" aria-modal="true" aria-label="抽盒结果">
-      <button class="dialog__close" id="revealClose" type="button" aria-label="关闭结果">×</button>
+    <div class="dialog" id="reveal" role="dialog" aria-modal="true" aria-label="Draw result">
+      <button class="dialog__close" id="revealClose" type="button" aria-label="Close result">×</button>
       <div id="revealGlyph"></div>
       <div class="dialog__actions">
-        <button class="btn" id="acceptBtn" type="button">收下</button>
-        <button class="btn btn--primary" id="againBtn" type="button">再抽一个</button>
+        <button class="btn" id="acceptBtn" type="button">Keep</button>
+        <button class="btn btn--primary" id="againBtn" type="button">Draw again</button>
       </div>
     </div>
   </div>

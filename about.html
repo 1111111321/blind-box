@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="关于盲盒：为什么做、怎么做、用了哪些技术，以及联系方式。">
+  <meta name="description" content="About Blind Box: why it exists, how it is built, what was left out, and how to get in touch.">
   <meta name="theme-color" content="#fbfaf7">
-  <title>关于 · 盲盒</title>
+  <title>About · Blind Box</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="about">
 
-  <a class="skip" href="#main">跳到主要内容</a>
+  <a class="skip" href="#main">Skip to content</a>
 
   <header class="site-head">
     <div class="wrap head-inner">
@@ -21,15 +21,15 @@
           <path d="M4 12.5h16M12 8v12"></path>
           <path d="M12 8c-1.2-2-3-3.2-4.2-2.2C6.6 6.7 8 8 12 8zM12 8c1.2-2 3-3.2 4.2-2.2C17.4 6.7 16 8 12 8z"></path>
         </svg>
-        <span>盲盒</span>
+        <span>Blind Box</span>
       </a>
 
-      <nav class="site-nav" aria-label="主导航">
+      <nav class="site-nav" aria-label="Main navigation">
         <ul>
-          <li><a href="index.html">抽盒</a></li>
-          <li><a href="collection.html">收藏册</a></li>
-          <li><a href="odds.html">概率</a></li>
-          <li><a href="about.html" aria-current="page">关于</a></li>
+          <li><a href="index.html">Draw</a></li>
+          <li><a href="collection.html">Collection</a></li>
+          <li><a href="odds.html">Odds</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
         </ul>
       </nav>
     </div>
@@ -39,37 +39,37 @@
     <div class="wrap">
 
       <section class="page-head">
-        <p class="eyebrow">关于</p>
-        <h1>这个小站是怎么来的</h1>
-        <p class="lede">一个周末做出来的盲盒小站，一共四个页面：抽盒、收藏册、概率和关于。</p>
+        <p class="eyebrow">About</p>
+        <h1>How this site came together</h1>
+        <p class="lede">A blind-box site made in a weekend: four pages, one stylesheet, a little JavaScript.</p>
       </section>
 
       <div class="prose">
 
-        <h2>为什么是盲盒</h2>
-        <p>盲盒好玩的地方不在东西本身，而在拆开之前那几秒。想到可以把这点期待感做成网页，就有了这个站：一箱十二个格子，点开一个，得一件小东西。</p>
+        <h2>Why a blind box</h2>
+        <p>The fun of a blind box is not the thing inside, it is the few seconds before you open it. This site tries to keep that pause: twelve boxes, one click, one small thing.</p>
 
-        <h2>怎么做的</h2>
+        <h2>How it is built</h2>
         <ul>
-          <li>四个页面各自是独立的 HTML 文件，导航是真实的链接，不用脚本拼菜单。</li>
-          <li>所有样式集中在一个 <code>style.css</code> 里，颜色、间距、字号都先定义成变量。</li>
-          <li>藏品、概率、抽盒逻辑在 <code>app.js</code> 里；稀有度表既是抽盒依据，也是「概率」页表格的数据来源。</li>
-          <li>收藏进度存在浏览器本地的 <code>localStorage</code>，没有账号，也不会上传。</li>
+          <li>Four pages, each a separate HTML file. The navigation is made of real links, not a menu assembled by script.</li>
+          <li>All styling lives in one <code>style.css</code>; colour, spacing and type are defined once as variables.</li>
+          <li>Pieces, odds and the draw itself live in <code>app.js</code>. The odds table is generated from the same data the draw uses.</li>
+          <li>Progress is stored in the browser's <code>localStorage</code>. There is no account and nothing is uploaded.</li>
         </ul>
 
-        <h2>做了哪些取舍</h2>
-        <p>一开始想做得很热闹：渐变、发光、满屏彩纸。后来发现这些效果把内容盖住了，手机上还卡。现在只留一种强调色，动效只剩下开盒时的一下轻晃和结果浮层的一次淡入。</p>
+        <h2>What was left out</h2>
+        <p>The first version was loud: gradients, glow, confetti. Those buried the content and were heavy on a phone. Now there is one accent colour, and only two pieces of motion — a small nudge when a box opens, and a fade for the result.</p>
 
-        <h2>无障碍</h2>
+        <h2>Accessibility</h2>
         <ul>
-          <li>盒子是真正的 <code>&lt;button&gt;</code>，键盘可以开盒；结果会通过 <code>aria-live</code> 播报。</li>
-          <li>结果浮层可以用 <code>Esc</code> 关闭，关闭后焦点回到刚才那个盒子。</li>
-          <li>系统开启「减少动态效果」时，动画基本关闭；深色模式跟随系统。</li>
+          <li>Boxes are real <code>&lt;button&gt;</code> elements, so they work from the keyboard; the result is announced through <code>aria-live</code>.</li>
+          <li>The result dialog closes with <code>Esc</code>, and focus returns to the box that was opened.</li>
+          <li>With reduced motion turned on, the animations are switched off; dark mode follows the system.</li>
         </ul>
 
-        <h2>关于我</h2>
-        <p>在 BiUH 读计算机科学。这个站是 Web 技术课程的课程项目。</p>
-        <p>如果有想法或问题，写信到 <a href="mailto:15804013415@163.com">15804013415@163.com</a>。</p>
+        <h2>About me</h2>
+        <p>I study Computer Science at BiUH. This site is a course project for Web Technologies.</p>
+        <p>If you have a question, write to <a href="mailto:15804013415@163.com">15804013415@163.com</a>.</p>
 
       </div>
     </div>
@@ -77,9 +77,9 @@
 
   <footer class="site-foot">
     <div class="wrap">
-      <span>© 2026 盲盒</span>
-      <span>仅供娱乐，进度只保存在本机</span>
-      <a href="odds.html">概率说明</a>
+      <span>© 2026 Blind Box</span>
+      <span>For fun only — progress stays on this device</span>
+      <a href="index.html">Back to the boxes</a>
     </div>
   </footer>
 

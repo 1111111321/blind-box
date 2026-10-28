@@ -12,11 +12,11 @@
      ---------------------------------------------------------------------- */
 
   const RARITY = {
-    N:   { key: 'N',   label: '普通', weight: 55,   order: 1 },
-    R:   { key: 'R',   label: '稀有', weight: 27,   order: 2 },
-    SR:  { key: 'SR',  label: '史诗', weight: 13,   order: 3 },
-    SSR: { key: 'SSR', label: '传说', weight: 4.5,  order: 4 },
-    UR:  { key: 'UR',  label: '隐藏', weight: 0.5,  order: 5 },
+    N:   { key: 'N',   label: 'Common', weight: 55,   order: 1 },
+    R:   { key: 'R',   label: 'Rare', weight: 27,   order: 2 },
+    SR:  { key: 'SR',  label: 'Epic', weight: 13,   order: 3 },
+    SSR: { key: 'SSR', label: 'Legendary', weight: 4.5,  order: 4 },
+    UR:  { key: 'UR',  label: 'Secret', weight: 0.5,  order: 5 },
   };
 
   /* 史诗及以上算「出货」，保底只认这几档 */
@@ -39,18 +39,18 @@
   };
 
   const ITEMS = [
-    { id: 'star',     name: '小星星',   rarity: 'N',   icon: 'star' },
-    { id: 'cloud',    name: '云朵',     rarity: 'N',   icon: 'cloud' },
-    { id: 'mushroom', name: '蘑菇',     rarity: 'N',   icon: 'mushroom' },
-    { id: 'berry',    name: '草莓',     rarity: 'N',   icon: 'strawberry' },
-    { id: 'umbrella', name: '小雨伞',   rarity: 'N',   icon: 'umbrella' },
-    { id: 'rabbit',   name: '兔兔',     rarity: 'R',   icon: 'rabbit' },
-    { id: 'cat',      name: '猫猫',     rarity: 'R',   icon: 'cat' },
-    { id: 'whale',    name: '鲸鱼',     rarity: 'R',   icon: 'whale' },
-    { id: 'fox',      name: '小狐狸',   rarity: 'SR',  icon: 'fox' },
-    { id: 'rocket',   name: '小火箭',   rarity: 'SR',  icon: 'rocket' },
-    { id: 'unicorn',  name: '独角兽',   rarity: 'SSR', icon: 'unicorn' },
-    { id: 'ufo',      name: '神秘飞碟', rarity: 'UR',  icon: 'ufo' },
+    { id: 'star',     name: 'Little Star',   rarity: 'N',   icon: 'star' },
+    { id: 'cloud',    name: 'Cloud',     rarity: 'N',   icon: 'cloud' },
+    { id: 'mushroom', name: 'Mushroom',     rarity: 'N',   icon: 'mushroom' },
+    { id: 'berry',    name: 'Strawberry',     rarity: 'N',   icon: 'strawberry' },
+    { id: 'umbrella', name: 'Umbrella',   rarity: 'N',   icon: 'umbrella' },
+    { id: 'rabbit',   name: 'Rabbit',     rarity: 'R',   icon: 'rabbit' },
+    { id: 'cat',      name: 'Cat',     rarity: 'R',   icon: 'cat' },
+    { id: 'whale',    name: 'Whale',     rarity: 'R',   icon: 'whale' },
+    { id: 'fox',      name: 'Fox',   rarity: 'SR',  icon: 'fox' },
+    { id: 'rocket',   name: 'Rocket',   rarity: 'SR',  icon: 'rocket' },
+    { id: 'unicorn',  name: 'Unicorn',   rarity: 'SSR', icon: 'unicorn' },
+    { id: 'ufo',      name: 'Mystery Saucer', rarity: 'UR',  icon: 'ufo' },
   ];
 
   const BY_ID = {};
@@ -183,7 +183,7 @@
         const box = document.createElement('button');
         box.type = 'button';
         box.className = 'box';
-        box.setAttribute('aria-label', '第 ' + (i + 1) + ' 盒，未开启');
+        box.setAttribute('aria-label', 'Box ' + (i + 1) + ', unopened');
         box.innerHTML = '<span class="box__no">' + String(i + 1).padStart(2, '0') + '</span>' +
           '<span class="box__glyph"></span>';
         box.addEventListener('click', function () { openBox(i); });
@@ -219,7 +219,7 @@
         box.dataset.rarity = result.rarity;
         box.querySelector('.box__glyph').innerHTML = glyph(result.item.icon, '');
         box.setAttribute('aria-label',
-          '第 ' + (index + 1) + ' 盒，开出 ' + result.item.name + '（' + RARITY[result.rarity].label + '）');
+          'Box ' + (index + 1) + ': ' + result.item.name + ' (' + RARITY[result.rarity].label + ')');
 
         refreshStats();
         renderRecent();
@@ -233,11 +233,11 @@
 
       dGlyph.innerHTML = glyph(result.item.icon, 'dialog__glyph');
       /* 浮层上不写文字，信息放进 aria-label，读屏仍然知道抽到了什么 */
-      dialog.setAttribute('aria-label', '开出' + result.item.name + '，' + meta.label);
+      dialog.setAttribute('aria-label', 'Drew ' + result.item.name + ', ' + meta.label);
 
       overlay.hidden = false;
       document.body.style.overflow = 'hidden';
-      liveEl.textContent = '开出了' + meta.label + '「' + result.item.name + '」';
+      liveEl.textContent = 'Drew ' + result.item.name + ' — ' + meta.label;
       closeBtn.focus();
 
       if (closedBoxes().length === 0) freshBtn.hidden = false;
@@ -253,7 +253,7 @@
     function refreshStats() {
       statDraws.textContent = state.draws;
       statOwned.textContent = ownedCount(state) + '/' + ITEMS.length;
-      statPity.textContent = state.pity >= PITY - 1 ? '下一抽必出史诗+' : '还差 ' + (PITY - state.pity) + ' 抽';
+      statPity.textContent = state.pity >= PITY - 1 ? 'next draw is Epic+' : (PITY - state.pity) + ' draws left';
     }
 
     function renderRecent() {
@@ -264,7 +264,7 @@
         return item ? '<b>' + item.name + '</b>' : '';
       }).filter(Boolean);
 
-      recentEl.innerHTML = '最近开出：' + names.join('、');
+      recentEl.innerHTML = 'Latest: ' + names.join(', ');
     }
 
     function openRandom() {
@@ -288,7 +288,7 @@
     freshBtn.addEventListener('click', function () {
       buildCase();
       refreshStats();
-      liveEl.textContent = '新的一箱已经装好';
+      liveEl.textContent = 'A new case is ready';
     });
 
     buildCase();
@@ -328,8 +328,8 @@
 
           /* 卡片上只留图形；名称放进 title 与 aria-label，鼠标悬停能看，读屏也能读 */
           const label = found
-            ? item.name + '，' + meta.label + (count > 1 ? '，已有 ' + count + ' 个' : '')
-            : '尚未抽到';
+            ? item.name + '，' + meta.label + (count > 1 ? ', ' + count + ' owned' : '')
+            : 'Not collected yet';
           card.setAttribute('aria-label', label);
           card.title = label;
 
@@ -344,14 +344,14 @@
       fill.style.width = percent + '%';
       text.textContent = owned + ' / ' + ITEMS.length + ' · ' + percent + '%';
 
-      if (owned === ITEMS.length) liveEl.textContent = '全部收集完成';
+      if (owned === ITEMS.length) liveEl.textContent = 'Collection complete';
     }
 
     resetBtn.addEventListener('click', function () {
-      if (!window.confirm('确定清空收藏和全部记录吗？这个操作不能撤销。')) return;
+      if (!window.confirm('Clear your collection and all records? This cannot be undone.')) return;
       clearState();
       render();
-      liveEl.textContent = '收藏已清空';
+      liveEl.textContent = 'Collection cleared';
     });
 
     render();
@@ -375,7 +375,7 @@
         const row = document.createElement('tr');
         row.innerHTML =
           '<td>' + meta.label + '</td>' +
-          '<td>' + items.length + ' 件</td>' +
+          '<td>' + items.length + (items.length === 1 ? ' item' : ' items') + '</td>' +
           '<td>' + fmt(share) + '%</td>' +
           '<td>' + fmt(share / items.length) + '%</td>';
         body.appendChild(row);
@@ -399,7 +399,8 @@
   }
 
   function fmt(value) {
-    return Number.isInteger(value) ? String(value) : value.toFixed(1);
+    /* 55 / 100 * 100 comes out as 55.00000000000001; round before printing */
+    return String(Math.round(value * 100) / 100);
   }
 
   /* ----------------------------------------------------------------------

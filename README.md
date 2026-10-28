@@ -1,21 +1,21 @@
-# 盲盒
+# Blind Box
 
-一个纯前端的小盲盒站：点开盒子，收下一件小东西。
+A small blind-box site: open a box, take home something small.
 
-纯静态的 HTML / CSS / JavaScript，没有服务器，也没有账号。收藏进度存在浏览器本地的 `localStorage` 里。
+Plain HTML, CSS and JavaScript — no framework, no build step, no server, no account. Progress is kept in the browser's `localStorage`.
 
-## 页面
+## Pages
 
-| 文件 | 内容 |
+| File | What it does |
 |---|---|
-| `index.html` | 抽盒：12 个盒子、开盒反馈、结果浮层、保底进度 |
-| `collection.html` | 收藏册：12 个格子，抽到的显示图形与名称，可清空记录 |
-| `odds.html` | 概率与玩法：每档概率、单件概率、保底与记录规则 |
-| `about.html` | 关于：为什么做、怎么做的、无障碍取舍、联系方式 |
+| `index.html` | Draw: twelve boxes, draw feedback, result dialog, guarantee counter, site contents |
+| `collection.html` | Collection: twelve slots, drawn pieces shown, records can be cleared |
+| `odds.html` | Odds and rules: odds per rarity, odds per piece, guarantee and storage rules |
+| `about.html` | About: why the site exists, how it is built, accessibility notes, contact |
 
-四个页面共用一套头部导航，链接是普通的 `<a href>`，不靠脚本拼菜单。
+All four pages share the same header. Navigation is made of real `<a href>` links, not a script-generated menu.
 
-## 结构
+## Structure
 
 ```
 blind-box/
@@ -23,38 +23,38 @@ blind-box/
 ├── collection.html
 ├── odds.html
 ├── about.html
-├── style.css        一个样式表管四个页面（颜色与间距都是变量）
-├── app.js           物品数据 + 抽盒逻辑 + 三个交互页面的渲染
+├── style.css        one stylesheet for four pages (colour and spacing are variables)
+├── app.js           item data, draw logic, rendering for the three interactive pages
 └── favicon.svg
 ```
 
-## 怎么跑
+## Running it
 
-直接双击 `index.html` 就能玩——页面不用 `fetch`，所以不需要本地服务器。
+Open `index.html` in a browser — the pages do not use `fetch`, so no local server is needed.
 
-想用服务器预览也行：在这个文件夹里执行 `python -m http.server 8000`，再打开 <http://localhost:8000>。
+A server works too: run `python -m http.server 8000` in this folder and open <http://localhost:8000>.
 
-## 逻辑在哪
+## Where the logic lives
 
-- **物品与概率**：`app.js` 顶部的 `ITEMS` 和 `RARITY`。`weight` 是概率权重；`odds.html` 的表格由同一份数据算出，改数字两边一起变。
-- **图形**：`ICONS` 里是 12 个 48×48 的 SVG 线稿，统一用 `currentColor`，所以深色模式自动跟着变，不用另存图片。
-- **抽盒**：先按权重摇稀有度，再在该档里等概率取一件。
-- **保底**：`PITY = 10`，连续 10 抽没有史诗及以上时，第 10 抽必出。
-- **一箱 12 个**：开过的盒子在本箱内不重复；整箱开完可「再装一箱」，收藏记录继续累计。
-- **存档**：`localStorage` 键名 `xingyu.box.v1`，存抽数、每件数量、保底计数和最近记录。
+- **Items and odds**: the `ITEMS` and `RARITY` tables at the top of `app.js`. `weight` is the probability weight; the table on `odds.html` is computed from the same numbers.
+- **Icons**: `ICONS` holds twelve 48×48 line drawings. They use `currentColor`, so dark mode follows without extra images.
+- **A draw**: roll a rarity by weight, then pick one piece from that tier with equal chance.
+- **Guarantee**: `PITY = 10`. Ten draws without Epic or better, and the tenth is guaranteed.
+- **Twelve per case**: a box never repeats inside the same case; when all twelve are open you can refill, and the collection keeps counting.
+- **Storage**: `localStorage` key `xingyu.box.v1`, holding draws, counts per piece, the guarantee counter and recent draws.
 
-## 设计上的取舍
+## Design notes
 
-早先的版本用了渐变、发光、彩纸和大量动画，结果盖过了内容，手机上也不好看。现在：
+An earlier version used gradients, glow, confetti and a lot of motion. It buried the content and did not feel good on a phone. Now:
 
-- 只用一种强调色（砖红），其余靠字号、间距和 1px 细线分层；
-- 动效只剩两处：开盒时的一下轻晃、结果浮层的一次淡入；
-- 稀有度在盒子上只用一个很小的圆点表示；
-- 深色模式跟随系统，颜色全部走 CSS 变量。
+- one accent colour, everything else carried by type size, spacing and 1px rules;
+- two pieces of motion: a nudge when a box opens, a fade for the result;
+- rarity shown on a box as a small dot, nothing more;
+- dark mode follows the system, colours defined once as CSS variables.
 
-## 无障碍
+## Accessibility
 
-- 盒子是真正的 `<button>`，可用键盘操作；结果通过 `aria-live` 播报。
-- 结果浮层 `role="dialog"`，`Esc` 可关闭，关闭后焦点回到触发的盒子。
-- 表格有 `<caption>` 与 `th scope`；正文有「跳到主要内容」链接。
-- 系统开启「减少动态效果」时（`prefers-reduced-motion`），动画基本关闭。
+- Boxes are real `<button>` elements; results are announced through `aria-live`.
+- The result dialog uses `role="dialog"`, closes with `Esc`, and returns focus to the box.
+- Tables use `<caption>` and `th scope`; there is a "Skip to content" link on every page.
+- With `prefers-reduced-motion` set, animations are effectively off.

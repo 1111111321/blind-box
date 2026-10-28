@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="盲盒的概率与规则：每一档的出现概率、保底机制，以及记录保存在哪里。">
+  <meta name="description" content="Odds and rules for Blind Box: the chance of each rarity, how the guarantee works, and where records are kept.">
   <meta name="theme-color" content="#fbfaf7">
-  <title>概率与玩法 · 盲盒</title>
+  <title>Odds &amp; rules · Blind Box</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="odds">
 
-  <a class="skip" href="#main">跳到主要内容</a>
+  <a class="skip" href="#main">Skip to content</a>
 
   <header class="site-head">
     <div class="wrap head-inner">
@@ -21,15 +21,15 @@
           <path d="M4 12.5h16M12 8v12"></path>
           <path d="M12 8c-1.2-2-3-3.2-4.2-2.2C6.6 6.7 8 8 12 8zM12 8c1.2-2 3-3.2 4.2-2.2C17.4 6.7 16 8 12 8z"></path>
         </svg>
-        <span>盲盒</span>
+        <span>Blind Box</span>
       </a>
 
-      <nav class="site-nav" aria-label="主导航">
+      <nav class="site-nav" aria-label="Main navigation">
         <ul>
-          <li><a href="index.html">抽盒</a></li>
-          <li><a href="collection.html">收藏册</a></li>
-          <li><a href="odds.html" aria-current="page">概率</a></li>
-          <li><a href="about.html">关于</a></li>
+          <li><a href="index.html">Draw</a></li>
+          <li><a href="collection.html">Collection</a></li>
+          <li><a href="odds.html" aria-current="page">Odds</a></li>
+          <li><a href="about.html">About</a></li>
         </ul>
       </nav>
     </div>
@@ -39,21 +39,21 @@
     <div class="wrap">
 
       <section class="page-head">
-        <p class="eyebrow">概率与玩法</p>
-        <h1>每个数字都写在这里</h1>
-        <p class="lede">每一抽先按权重摇出稀有度，再在这一档里等概率取一件。下表由页面脚本现算，不是手写的。</p>
+        <p class="eyebrow">Odds &amp; rules</p>
+        <h1>Every number is on this page</h1>
+        <p class="lede">Each draw rolls a rarity by weight, then picks one piece from that tier with equal chance. The table below is computed by the page, not typed out by hand.</p>
       </section>
 
       <section class="panel">
-        <h2>五档稀有度</h2>
+        <h2>Five rarities</h2>
         <table>
-          <caption>合计 100%；单件概率 = 该档概率 ÷ 该档件数</caption>
+          <caption>100% in total. Per-piece odds = tier odds divided by the number of pieces in that tier.</caption>
           <thead>
             <tr>
-              <th scope="col">稀有度</th>
-              <th scope="col">件数</th>
-              <th scope="col">概率</th>
-              <th scope="col">单件概率</th>
+              <th scope="col">Rarity</th>
+              <th scope="col">Pieces</th>
+              <th scope="col">Odds</th>
+              <th scope="col">Per piece</th>
             </tr>
           </thead>
           <tbody id="oddsBody"></tbody>
@@ -61,34 +61,34 @@
       </section>
 
       <section class="panel">
-        <h2>每一件</h2>
+        <h2>Every piece</h2>
         <ul class="list" id="itemList"></ul>
       </section>
 
       <section class="panel">
-        <h2>规则</h2>
+        <h2>Rules</h2>
         <ol class="rules">
-          <li><b>一箱 12 个</b>：每个盒子只开一次，开过的不会在这一箱里重复出现。</li>
-          <li><b>整箱换新</b>：12 个全开完可以「再装一箱」，收藏记录继续累计。</li>
-          <li><b>保底</b>：连续 10 抽没有出史诗及以上，第 10 抽必定是史诗、传说或隐藏。</li>
-          <li><b>记录</b>：抽数、收藏和保底进度都存在本机浏览器的 localStorage 里，不上传。</li>
-          <li><b>清空</b>：收藏册里的「清空记录」会把一切归零，不能撤销。</li>
+          <li><b>Twelve per case</b>: each box opens once, and never repeats inside the same case.</li>
+          <li><b>Refill</b>: when all twelve are open you can refill the case; the collection keeps counting.</li>
+          <li><b>Guarantee</b>: ten draws without Epic or better, and the tenth is Epic, Legendary or Secret.</li>
+          <li><b>Records</b>: draws, collection and the guarantee counter live in localStorage on this device. Nothing is uploaded.</li>
+          <li><b>Clearing</b>: "Clear records" in the collection wipes everything, and cannot be undone.</li>
         </ol>
       </section>
 
       <section class="panel">
-        <h2>说明</h2>
-        <p class="note">概率写在 <code>app.js</code> 顶部的 <code>RARITY</code> 里，改一个数字，抽盒和这张表会一起变。</p>
-        <p class="note">纯前端的小项目：没有服务器、没有账号，刷新页面或换浏览器都能重来。</p>
+        <h2>Notes</h2>
+        <p class="note">The odds live in the <code>RARITY</code> table at the top of <code>app.js</code>. Change a number there and both the draw and this table follow.</p>
+        <p class="note">A small front-end project: no server, no account. Refreshing or switching browsers starts a fresh save.</p>
       </section>
     </div>
   </main>
 
   <footer class="site-foot">
     <div class="wrap">
-      <span>© 2026 盲盒</span>
-      <span>仅供娱乐，进度只保存在本机</span>
-      <a href="about.html">关于本站</a>
+      <span>© 2026 Blind Box</span>
+      <span>For fun only — progress stays on this device</span>
+      <a href="about.html">About this site</a>
     </div>
   </footer>
 
